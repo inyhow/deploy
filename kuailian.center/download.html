@@ -1,0 +1,910 @@
+
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="keywords" content="快连, 网络加速, 代理服务, 安全上网, 快连官网, 快连下载, 网络优化, 全球节点">
+    <meta name="description" content="快连下载中心客户端，支持Windows、Mac、Android、iOS多平台，安全稳定高速，一键下载安装。">
+    <title>快连下载 - 快连官网客户端下载中心</title>
+    <link rel="icon" href="favicon.ico">
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "SoftwareApplication",
+        "name": "快连",
+        "applicationCategory": "UtilityApplication",
+        "operatingSystem": "Windows, macOS, Android, iOS",
+        "description": "快连下载中心客户端，支持Windows、Mac、Android、iOS多平台，安全稳定高速，一键下载安装。",
+        "offers": {
+            "@type": "Offer",
+            "price": "0",
+            "priceCurrency": "CNY"
+        },
+        "author": {
+            "@type": "Organization",
+            "name": "快连"
+        }
+    }
+    </script>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary-blue: #1e3a8a;
+            --primary-dark: #172554;
+            --accent-orange: #f59e0b;
+            --accent-orange-hover: #d97706;
+            --white: #ffffff;
+            --gray-100: #f8fafc;
+            --gray-200: #e2e8f0;
+            --gray-600: #475569;
+            --gray-900: #1e293b;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Helvetica Neue', Arial, sans-serif;
+            line-height: 1.6;
+            color: var(--gray-900);
+            background: var(--gray-100);
+        }
+
+        /* 导航栏 */
+        .navbar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            background: rgba(30, 58, 138, 0.95);
+            backdrop-filter: blur(10px);
+            padding: 1rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            z-index: 1000;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            text-decoration: none;
+        }
+
+        .logo-icon {
+            width: 40px;
+            height: 40px;
+            background: linear-gradient(135deg, var(--accent-orange), #fbbf24);
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 20px;
+            font-weight: bold;
+            color: var(--white);
+            box-shadow: 0 4px 15px rgba(245, 158, 11, 0.4);
+        }
+
+        .logo-text {
+            color: var(--white);
+            font-size: 1.5rem;
+            font-weight: 700;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            list-style: none;
+        }
+
+        .nav-links a {
+            color: rgba(255,255,255,0.9);
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+
+        .nav-links a:hover {
+            color: var(--accent-orange);
+        }
+
+        .nav-links a.active {
+            color: var(--accent-orange);
+        }
+
+        /* 下载页头部 */
+        .download-header {
+            background: linear-gradient(135deg, var(--primary-blue) 0%, var(--primary-dark) 100%);
+            padding: 8rem 2rem 5rem;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .download-header::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(245, 158, 11, 0.1) 0%, transparent 50%);
+            animation: rotate 20s linear infinite;
+        }
+
+        @keyframes rotate {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+
+        .header-content {
+            position: relative;
+            z-index: 1;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .header-badge {
+            display: inline-block;
+            background: rgba(245, 158, 11, 0.2);
+            color: var(--accent-orange);
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            font-weight: 600;
+            margin-bottom: 1.5rem;
+            border: 1px solid rgba(245, 158, 11, 0.3);
+        }
+
+        .header-title {
+            font-size: 3rem;
+            font-weight: 800;
+            color: var(--white);
+            margin-bottom: 1rem;
+        }
+
+        .header-subtitle {
+            font-size: 1.2rem;
+            color: rgba(255,255,255,0.9);
+            margin-bottom: 2rem;
+        }
+
+        .main-download-btn {
+            display: inline-block;
+            padding: 1.2rem 4rem;
+            background: linear-gradient(135deg, var(--accent-orange), #fbbf24);
+            color: var(--white);
+            border: none;
+            border-radius: 30px;
+            font-size: 1.3rem;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.3s;
+            text-decoration: none;
+            box-shadow: 0 10px 40px rgba(245, 158, 11, 0.5);
+            margin-top: 1rem;
+        }
+
+        .main-download-btn:hover {
+            transform: translateY(-3px) scale(1.05);
+            box-shadow: 0 15px 50px rgba(245, 158, 11, 0.6);
+        }
+
+        /* 产品优势板块 */
+        .features-section {
+            padding: 4rem 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .features-section h2 {
+            font-size: 2.5rem;
+            font-weight: 800;
+            color: var(--primary-blue);
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+        }
+
+        .feature-card {
+            background: var(--white);
+            border-radius: 20px;
+            padding: 2rem;
+            text-align: center;
+            transition: transform 0.3s;
+            border: 1px solid var(--gray-200);
+        }
+
+        .feature-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+        }
+
+        .feature-icon {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+
+        .feature-card h3 {
+            font-size: 1.5rem;
+            color: var(--primary-blue);
+            margin-bottom: 1rem;
+        }
+
+        .feature-card p {
+            color: var(--gray-600);
+            font-size: 0.95rem;
+        }
+
+        /* 下载卡片区域 */
+        .download-section {
+            padding: 4rem 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .download-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+            margin-bottom: 3rem;
+        }
+
+        .download-card {
+            background: var(--white);
+            border-radius: 24px;
+            padding: 2.5rem;
+            text-align: center;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            border: 2px solid var(--gray-200);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .download-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 6px;
+            background: linear-gradient(90deg, var(--primary-blue), var(--accent-orange));
+        }
+
+        .download-card:hover {
+            transform: translateY(-10px) scale(1.02);
+            box-shadow: 0 25px 50px rgba(0,0,0,0.15);
+            border-color: var(--accent-orange);
+        }
+
+        .card-icon {
+            width: 100px;
+            height: 100px;
+            border-radius: 24px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 3.5rem;
+            margin: 0 auto 1.5rem;
+            background: var(--gray-100);
+            transition: all 0.3s;
+        }
+
+        .download-card:hover .card-icon {
+            transform: scale(1.1);
+        }
+
+        .card-icon.windows {
+            background: linear-gradient(135deg, #0078d7, #00bcf2);
+        }
+
+        .card-icon.mac {
+            background: linear-gradient(135deg, #ff2d55, #ff6b8b);
+        }
+
+        .card-icon.android {
+            background: linear-gradient(135deg, #3ddc84, #2ea44f);
+        }
+
+        .card-icon.ios {
+            background: linear-gradient(135deg, #5856d6, #af52de);
+        }
+
+        .card-title {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--primary-blue);
+            margin-bottom: 0.5rem;
+        }
+
+        .card-version {
+            color: var(--gray-600);
+            font-size: 0.9rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .card-size {
+            color: var(--gray-600);
+            font-size: 0.9rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .download-btn {
+            display: block;
+            width: 100%;
+            padding: 1rem 2rem;
+            background: linear-gradient(135deg, var(--primary-blue), var(--primary-dark));
+            color: var(--white);
+            border: none;
+            border-radius: 16px;
+            font-size: 1.1rem;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.3s;
+            text-decoration: none;
+            margin-bottom: 1rem;
+        }
+
+        .download-btn:hover {
+            background: linear-gradient(135deg, var(--accent-orange), #fbbf24);
+            transform: translateY(-2px);
+            box-shadow: 0 10px 30px rgba(245, 158, 11, 0.4);
+        }
+
+        .qrcode-section {
+            margin-top: 1.5rem;
+            padding-top: 1.5rem;
+            border-top: 1px solid var(--gray-200);
+        }
+
+        .qrcode-section p {
+            font-size: 0.9rem;
+            color: var(--gray-600);
+            margin-bottom: 0.5rem;
+        }
+
+        .qrcode-img {
+            width: 120px;
+            height: 120px;
+            margin: 0 auto;
+            background: #f5f5f5;
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.8rem;
+            color: var(--gray-600);
+        }
+
+        /* 安装指引 */
+        .tutorial-guide {
+            background: var(--white);
+            border-radius: 20px;
+            padding: 2rem;
+            margin: 2rem auto;
+            max-width: 800px;
+            text-align: center;
+            border: 2px dashed var(--accent-orange);
+        }
+
+        .tutorial-guide h3 {
+            color: var(--primary-blue);
+            margin-bottom: 1rem;
+        }
+
+        .tutorial-guide a {
+            color: var(--accent-orange);
+            font-weight: bold;
+            text-decoration: none;
+        }
+
+        .tutorial-guide a:hover {
+            text-decoration: underline;
+        }
+
+        /* 用户评价 */
+        .testimonials-section {
+            padding: 4rem 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .testimonials-section h2 {
+            font-size: 2.5rem;
+            font-weight: 800;
+            color: var(--primary-blue);
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+
+        .testimonials-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .testimonial-card {
+            background: var(--white);
+            border-radius: 20px;
+            padding: 2rem;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.05);
+            border-left: 4px solid var(--accent-orange);
+        }
+
+        .testimonial-text {
+            font-style: italic;
+            color: var(--gray-600);
+            margin-bottom: 1.5rem;
+            line-height: 1.7;
+        }
+
+        .testimonial-author {
+            font-weight: bold;
+            color: var(--primary-blue);
+        }
+
+        /* 系统要求 */
+        .requirements {
+            background: var(--white);
+            border-radius: 20px;
+            padding: 3rem;
+            margin-top: 3rem;
+        }
+
+        .requirements h2 {
+            font-size: 2rem;
+            font-weight: 700;
+            color: var(--primary-blue);
+            margin-bottom: 2rem;
+            text-align: center;
+        }
+
+        .requirements-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+        }
+
+        .requirement-item {
+            background: var(--gray-100);
+            border-radius: 16px;
+            padding: 2rem;
+        }
+
+        .requirement-item h3 {
+            font-size: 1.25rem;
+            font-weight: 700;
+            color: var(--primary-blue);
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .requirement-item ul {
+            list-style: none;
+        }
+
+        .requirement-item li {
+            padding: 0.5rem 0;
+            color: var(--gray-600);
+            font-size: 0.95rem;
+            padding-left: 1.5rem;
+            position: relative;
+        }
+
+        .requirement-item li::before {
+            content: '•';
+            position: absolute;
+            left: 0;
+            color: var(--accent-orange);
+        }
+
+        /* 常见问题 */
+        .faq {
+            background: var(--white);
+            border-radius: 20px;
+            padding: 3rem;
+            margin-top: 3rem;
+        }
+
+        .faq h2 {
+            font-size: 2rem;
+            font-weight: 700;
+            color: var(--primary-blue);
+            margin-bottom: 2rem;
+            text-align: center;
+        }
+
+        .faq-item {
+            border-bottom: 1px solid var(--gray-200);
+            padding: 1.5rem 0;
+        }
+
+        .faq-item:last-child {
+            border-bottom: none;
+        }
+
+        .faq-question {
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: var(--gray-900);
+            margin-bottom: 0.5rem;
+        }
+
+        .faq-answer {
+            color: var(--gray-600);
+            line-height: 1.7;
+        }
+
+        /* 页脚 */
+        .footer {
+            background: var(--primary-dark);
+            color: var(--white);
+            padding: 4rem 2rem 2rem;
+            margin-top: 4rem;
+        }
+
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 3rem;
+            margin-bottom: 3rem;
+        }
+
+        .footer-section h4 {
+            font-size: 1.2rem;
+            font-weight: 700;
+            margin-bottom: 1.5rem;
+            color: var(--accent-orange);
+        }
+
+        .footer-section ul {
+            list-style: none;
+        }
+
+        .footer-section li {
+            margin-bottom: 0.75rem;
+        }
+
+        .footer-section a {
+            color: rgba(255,255,255,0.8);
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        .footer-section a:hover {
+            color: var(--accent-orange);
+        }
+
+        .footer-bottom {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding-top: 2rem;
+            border-top: 1px solid rgba(255,255,255,0.1);
+            text-align: center;
+            color: rgba(255,255,255,0.6);
+        }
+
+        /* 返回首页悬浮按钮 */
+        .floating-home-btn {
+            position: fixed;
+            bottom: 2rem;
+            right: 2rem;
+            width: 60px;
+            height: 60px;
+            background: var(--accent-orange);
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            text-decoration: none;
+            box-shadow: 0 4px 20px rgba(245, 158, 11, 0.4);
+            z-index: 999;
+            transition: all 0.3s;
+        }
+
+        .floating-home-btn:hover {
+            transform: scale(1.1);
+            background: var(--accent-orange-hover);
+        }
+
+        /* 响应式 */
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+
+            .header-title {
+                font-size: 2rem;
+            }
+
+            .header-subtitle {
+                font-size: 1rem;
+            }
+
+            .download-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .features-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .testimonials-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .requirements-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .floating-home-btn {
+                bottom: 1rem;
+                right: 1rem;
+                width: 50px;
+                height: 50px;
+                font-size: 1.2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- 导航栏 -->
+    <nav class="navbar">
+        <a href="#" class="logo">
+            <div class="logo-icon">快</div>
+            <span class="logo-text">快连VPN</span>
+        </a>
+        <ul class="nav-links">
+            <li><a href="#">首页</a></li>
+            <li><a href="#" class="active">下载中心</a></li>
+            <li><a href="#">安装教程</a></li>
+            <li><a href="#">功能特点</a></li>
+        </ul>
+    </nav>
+
+    <!-- 下载页头部 -->
+    <div class="download-header">
+        <div class="header-content">
+            <span class="header-badge">多平台支持 · 一键下载</span>
+            <h1 class="header-title">下载快连VPN</h1>
+            <p class="header-subtitle">选择适合您的设备，立即享受高速稳定的网络体验</p>
+            <a href="#" class="main-download-btn">⬇️ 立即下载</a>
+        </div>
+    </div>
+
+    <!-- 产品优势 -->
+    <section class="features-section">
+        <h2>为什么选择快连VPN？</h2>
+        <div class="features-grid">
+            <div class="feature-card">
+                <div class="feature-icon">⚡</div>
+                <h3>极速连接</h3>
+                <p>全球2000+节点，智能选择最优线路，提供稳定的高速网络连接</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">🔒</div>
+                <h3>安全加密</h3>
+                <p>军用级AES-256加密技术，保护您的网络隐私和数据安全</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">🌍</div>
+                <h3>全球覆盖</h3>
+                <p>支持80+国家和地区节点，一键切换IP，解锁全球内容</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">🎯</div>
+                <h3>简单易用</h3>
+                <p>一键连接，无需复杂设置，新手也能轻松上手</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- 下载卡片区域 -->
+    <section class="download-section">
+        <div class="download-grid">
+            <!-- Windows -->
+            <div class="download-card">
+                <div class="card-icon windows" role="img" aria-label="Windows 客户端下载">💻</div>
+                <h2 class="card-title">Windows</h2>
+                <p class="card-version">版本: v3.5.2</p>
+                <p class="card-size">大小: 45.8 MB</p>
+                <a href="#" class="download-btn">下载Windows版</a>
+                <div class="qrcode-section">
+                    <p>手机扫码下载</p>
+                    <div class="qrcode-img">Windows下载二维码</div>
+                </div>
+            </div>
+
+            <!-- Mac -->
+            <div class="download-card">
+                <div class="card-icon mac" role="img" aria-label="Mac 客户端下载">🍎</div>
+                <h2 class="card-title">Mac</h2>
+                <p class="card-version">版本: v3.5.2</p>
+                <p class="card-size">大小: 52.3 MB</p>
+                <a href="#" class="download-btn">下载Mac版</a>
+                <div class="qrcode-section">
+                    <p>手机扫码下载</p>
+                    <div class="qrcode-img">Mac下载二维码</div>
+                </div>
+            </div>
+
+            <!-- Android -->
+            <div class="download-card">
+                <div class="card-icon android" role="img" aria-label="Android 客户端下载">🤖</div>
+                <h2 class="card-title">Android</h2>
+                <p class="card-version">版本: v3.5.2</p>
+                <p class="card-size">大小: 38.5 MB</p>
+                <a href="#" class="download-btn">下载Android版</a>
+                <div class="qrcode-section">
+                    <p>应用商店下载</p>
+                    <div class="qrcode-img">Google Play二维码</div>
+                </div>
+            </div>
+
+            <!-- iOS -->
+            <div class="download-card">
+                <div class="card-icon ios" role="img" aria-label="iOS 客户端下载">📲</div>
+                <h2 class="card-title">iOS</h2>
+                <p class="card-version">版本: v3.5.2</p>
+                <p class="card-size">大小: 42.1 MB</p>
+                <a href="#" class="download-btn">下载iOS版</a>
+                <div class="qrcode-section">
+                    <p>App Store下载</p>
+                    <div class="qrcode-img">App Store二维码</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 安装指引 -->
+    <div class="tutorial-guide">
+        <h3>下载后如何安装？</h3>
+        <p>下载完成后，按照安装向导提示完成安装。如遇问题，请查看<a href="#">详细图文教程 →</a></p>
+        <p style="margin-top: 0.5rem; font-size: 0.9rem; color: var(--gray-600);">最新更新：2025年12月 - 新增日本节点，优化连接速度</p>
+    </div>
+
+    <!-- 用户评价 -->
+    <section class="testimonials-section">
+        <h2>用户真实评价</h2>
+        <div class="testimonials-grid">
+            <div class="testimonial-card">
+                <p class="testimonial-text">"速度非常快，看4K视频完全无压力，连接稳定不掉线，已经用了半年多了！"</p>
+                <p class="testimonial-author">— 北京用户 · 技术从业者</p>
+            </div>
+            <div class="testimonial-card">
+                <p class="testimonial-text">"操作简单，界面友好，非常适合我这种不懂技术的用户，一键连接真的很方便。"</p>
+                <p class="testimonial-author">— 上海用户 · 自由职业者</p>
+            </div>
+            <div class="testimonial-card">
+                <p class="testimonial-text">"之前用过几个VPN都经常断连，快连的稳定性真的很好，客服响应也很快。"</p>
+                <p class="testimonial-author">— 广州用户 · 外贸从业者</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- 系统要求 -->
+    <section class="requirements">
+        <h2>系统要求</h2>
+        <div class="requirements-grid">
+            <div class="requirement-item">
+                <h3>Windows</h3>
+                <ul>
+                    <li>Windows 10 或更高版本</li>
+                    <li>至少2GB RAM</li>
+                    <li>100MB可用磁盘空间</li>
+                    <li>管理员权限（用于安装）</li>
+                </ul>
+            </div>
+            <div class="requirement-item">
+                <h3>macOS</h3>
+                <ul>
+                    <li>macOS 10.14 或更高版本</li>
+                    <li>至少2GB RAM</li>
+                    <li>150MB可用磁盘空间</li>
+                    <li>Intel或Apple Silicon芯片</li>
+                </ul>
+            </div>
+            <div class="requirement-item">
+                <h3>Android</h3>
+                <ul>
+                    <li>Android 7.0 或更高版本</li>
+                    <li>至少1GB RAM</li>
+                    <li>50MB可用存储空间</li>
+                    <li>支持ARM架构</li>
+                </ul>
+            </div>
+            <div class="requirement-item">
+                <h3>iOS</h3>
+                <ul>
+                    <li>iOS 13.0 或更高版本</li>
+                    <li>iPhone 6s 或更新机型</li>
+                    <li>iPad Air 2 或更新机型</li>
+                    <li>50MB可用存储空间</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <!-- 常见问题 -->
+    <section class="faq">
+        <h2>常见问题</h2>
+        <div class="faq-item">
+            <h3 class="faq-question">Q: 快连VPN是否免费？</h3>
+            <p class="faq-answer">A: 我们提供免费试用版本，包含基础功能。高级功能需要订阅专业版，提供更快的速度和更多节点选择。</p>
+        </div>
+        <div class="faq-item">
+            <h3 class="faq-question">Q: 如何选择最适合我的服务器节点？</h3>
+            <p class="faq-answer">A: 快连VPN会自动为您选择最优节点，您也可以手动选择特定国家或地区的节点。</p>
+        </div>
+        <div class="faq-item">
+            <h3 class="faq-question">Q: 支持同时连接多个设备吗？</h3>
+            <p class="faq-answer">A: 是的，专业版支持最多5台设备同时连接，免费版支持1台设备。</p>
+        </div>
+        <div class="faq-item">
+            <h3 class="faq-question">Q: 是否保留用户日志？</h3>
+            <p class="faq-answer">A: 我们严格遵守无日志政策，不记录用户的活动日志、连接日志或DNS查询。</p>
+        </div>
+    </section>
+
+    <!-- 页脚 -->
+    <footer class="footer">
+        <div class="footer-content">
+            <div class="footer-section">
+                <h4>关于我们</h4>
+                <ul>
+                    <li><a href="#">公司介绍</a></li>
+                    <li><a href="#">联系我们</a></li>
+                    <li><a href="#">加入我们</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h4>产品服务</h4>
+                <ul>
+                    <li><a href="#">功能介绍</a></li>
+                    <li><a href="download.html">下载中心</a></li>
+                    <li><a href="#">价格方案</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h4>帮助支持</h4>
+                <ul>
+                    <li><a href="#">使用教程</a></li>
+                    <li><a href="#">常见问题</a></li>
+                    <li><a href="#">客服支持</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h4>法律条款</h4>
+                <ul>
+                    <li><a href="#">服务条款</a></li>
+                    <li><a href="#">隐私政策</a></li>
+                    <li><a href="#">免责声明</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2026 快连VPN. All rights reserved. | 备案号：京ICP备123456号</p>
+        </div>
+    </footer>
+
+    <!-- 返回首页悬浮按钮 -->
+    <a href="#" class="floating-home-btn" aria-label="返回首页">🏠</a>
+
+</body>
+</html>
