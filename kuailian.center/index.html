@@ -1,0 +1,1448 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>快连 | 一键解锁全球网络|永久稳定连接的加速工具</title>
+    <meta name="description" content="快连提供专业的网络连接技术，采用智能路由算法实现毫秒级连接。我们的快连技术支持多平台使用，确保用户在多种场景下享受稳定高速的网络体验。">
+    <meta name="keywords" content="快连,快连技术,快连连接,网络快连,智能快连,快连加速,快连下载,快连应用,快连工具,快连安全">
+     <link rel="icon" href="favicon.ico" type="image/x-icon">
+    <!-- 样式表 -->
+    <style>
+        /* ===== 变量定义 ===== */
+        :root {
+            --primary: #2563eb;
+            --primary-dark: #1d4ed8;
+            --primary-light: rgba(37, 99, 235, 0.08);
+            --secondary: #f59e0b;
+            --accent: #7c3aed;
+            --success: #10b981;
+            --warning: #f59e0b;
+            --danger: #ef4444;
+            --dark: #1e293b;
+            --darker: #0f172a;
+            --light: #f8fafc;
+            --light-gray: #f1f5f9;
+            --text: #334155;
+            --text-light: #64748b;
+            --border: #e2e8f0;
+            --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.1);
+            --shadow-md: 0 4px 6px rgba(0, 0, 0, 0.1);
+            --shadow-lg: 0 10px 25px rgba(0, 0, 0, 0.1);
+            --radius-sm: 6px;
+            --radius-md: 8px;
+            --radius-lg: 12px;
+            --transition: all 0.2s ease;
+        }
+        
+        /* ===== 基础样式 ===== */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'PingFang SC', 'Microsoft YaHei', sans-serif;
+            line-height: 1.6;
+            color: var(--text);
+            background-color: var(--light);
+            font-size: 15px;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+        
+        h1 {
+            font-size: 2.25rem; /* 36px */
+            font-weight: 700;
+            line-height: 1.2;
+            margin-bottom: 1rem;
+            color: var(--darker);
+        }
+        
+        h2 {
+            font-size: 1.875rem; /* 30px */
+            font-weight: 700;
+            line-height: 1.3;
+            margin-bottom: 0.875rem;
+            color: var(--dark);
+        }
+        
+        h3 {
+            font-size: 1.5rem; /* 24px */
+            font-weight: 600;
+            line-height: 1.4;
+            margin-bottom: 0.75rem;
+            color: var(--dark);
+        }
+        
+        h4 {
+            font-size: 1.25rem; /* 20px */
+            font-weight: 600;
+            line-height: 1.4;
+            margin-bottom: 0.625rem;
+            color: var(--dark);
+        }
+        
+        p {
+            font-size: 1rem; /* 16px */
+            line-height: 1.7;
+            margin-bottom: 1rem;
+            color: var(--text);
+        }
+        
+        .text-large {
+            font-size: 1.125rem; /* 18px */
+        }
+        
+        .text-small {
+            font-size: 0.875rem; /* 14px */
+        }
+        
+        .text-xs {
+            font-size: 0.75rem; /* 12px */
+        }
+        
+        a {
+            text-decoration: none;
+            color: var(--primary);
+            transition: var(--transition);
+        }
+        
+        a:hover {
+            color: var(--primary-dark);
+        }
+        
+        .container {
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        .section {
+            padding: 80px 0;
+        }
+        
+        .section-header {
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+        
+        .section-title {
+            font-size: 2rem;
+            font-weight: 700;
+            margin-bottom: 0.75rem;
+            color: var(--darker);
+            position: relative;
+            display: inline-block;
+        }
+        
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: -8px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 60px;
+            height: 3px;
+            background: linear-gradient(90deg, var(--primary), var(--accent));
+            border-radius: 1.5px;
+        }
+        
+        .section-subtitle {
+            font-size: 1.125rem;
+            color: var(--text-light);
+            max-width: 700px;
+            margin: 0 auto;
+            line-height: 1.6;
+        }
+        
+        .highlight {
+            color: var(--primary);
+            font-weight: 600;
+        }
+        
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            padding: 0.75rem 1.5rem;
+            border-radius: var(--radius-md);
+            font-weight: 600;
+            font-size: 1rem;
+            transition: var(--transition);
+            border: none;
+            cursor: pointer;
+            gap: 0.5rem;
+        }
+        
+        .btn-primary {
+            background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
+            color: white;
+            box-shadow: var(--shadow-md);
+        }
+        
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-lg);
+        }
+        
+        .btn-secondary {
+            background: white;
+            color: var(--primary);
+            border: 1.5px solid var(--border);
+            box-shadow: var(--shadow-sm);
+        }
+        
+        .btn-secondary:hover {
+            border-color: var(--primary);
+            box-shadow: var(--shadow-md);
+        }
+        
+        .btn-small {
+            padding: 0.5rem 1rem;
+            font-size: 0.875rem;
+        }
+        
+        /* ===== 头部样式 ===== */
+        .header {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+            padding: 1rem 0;
+        }
+        
+        .header-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            font-size: 1.5rem;
+            font-weight: 700;
+        }
+        
+        .logo-icon {
+            width: 36px;
+            height: 36px;
+            background: linear-gradient(135deg, var(--primary) 0%, var(--accent) 100%);
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: bold;
+        }
+        
+        .logo-text {
+            background: linear-gradient(135deg, var(--primary) 0%, var(--accent) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        
+        .nav {
+            display: flex;
+            gap: 2rem;
+        }
+        
+        .nav-link {
+            font-weight: 500;
+            color: var(--text);
+            font-size: 0.95rem;
+            position: relative;
+            padding: 0.25rem 0;
+            transition: var(--transition);
+        }
+        
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: linear-gradient(90deg, var(--primary), var(--accent));
+            border-radius: 1px;
+            transition: var(--transition);
+        }
+        
+        .nav-link:hover {
+            color: var(--primary);
+        }
+        
+        .nav-link:hover::after {
+            width: 100%;
+        }
+        
+        /* ===== 英雄区域 ===== */
+        .hero {
+            padding: 140px 0 80px;
+            background: linear-gradient(135deg, #f0f7ff 0%, #e6f0ff 100%);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: -100px;
+            right: -100px;
+            width: 400px;
+            height: 400px;
+            background: linear-gradient(135deg, rgba(37, 99, 235, 0.05) 0%, rgba(124, 58, 237, 0.05) 100%);
+            border-radius: 50%;
+            z-index: 0;
+        }
+        
+        .hero-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem;
+            align-items: center;
+            position: relative;
+            z-index: 1;
+        }
+        
+        .hero-text h1 {
+            font-size: 2.5rem;
+            margin-bottom: 1.25rem;
+            line-height: 1.2;
+        }
+        
+        .hero-text p {
+            font-size: 1.125rem;
+            color: var(--text-light);
+            margin-bottom: 2rem;
+            line-height: 1.6;
+        }
+        
+        .hero-buttons {
+            display: flex;
+            gap: 1rem;
+            flex-wrap: wrap;
+        }
+        
+        .hero-stats {
+            display: flex;
+            gap: 2rem;
+            margin-top: 2.5rem;
+            padding-top: 1.5rem;
+            border-top: 1px solid var(--border);
+        }
+        
+        .stat-item {
+            text-align: center;
+        }
+        
+        .stat-number {
+            font-size: 1.75rem;
+            font-weight: 700;
+            background: linear-gradient(135deg, var(--primary) 0%, var(--accent) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            line-height: 1;
+        }
+        
+        .stat-label {
+            font-size: 0.875rem;
+            color: var(--text-light);
+            margin-top: 0.25rem;
+        }
+        
+        .hero-image {
+            width: 100%;
+            border-radius: var(--radius-lg);
+            box-shadow: var(--shadow-lg);
+            position: relative;
+            z-index: 1;
+            transition: var(--transition);
+        }
+        
+        .hero-image:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15);
+        }
+        
+        /* ===== 核心优势 ===== */
+        .advantages {
+            background: white;
+        }
+        
+        .advantages-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 1.5rem;
+        }
+        
+        .advantage-card {
+            background: white;
+            border-radius: var(--radius-lg);
+            padding: 1.75rem;
+            box-shadow: var(--shadow-md);
+            border: 1px solid var(--border);
+            transition: var(--transition);
+        }
+        
+        .advantage-card:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--shadow-lg);
+            border-color: var(--primary);
+        }
+        
+        .advantage-icon {
+            width: 60px;
+            height: 60px;
+            background: linear-gradient(135deg, var(--primary-light) 0%, rgba(124, 58, 237, 0.08) 100%);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 1.25rem;
+            font-size: 1.5rem;
+            color: var(--primary);
+        }
+        
+        .advantage-card h3 {
+            font-size: 1.25rem;
+            margin-bottom: 0.75rem;
+        }
+        
+        .advantage-card p {
+            font-size: 0.95rem;
+            color: var(--text-light);
+            margin-bottom: 0;
+        }
+        
+        /* ===== 技术特点 ===== */
+        .features {
+            background: var(--light);
+        }
+        
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+        }
+        
+        .feature-item {
+            text-align: center;
+            padding: 2rem;
+            background: white;
+            border-radius: var(--radius-lg);
+            box-shadow: var(--shadow-md);
+            transition: var(--transition);
+        }
+        
+        .feature-item:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--shadow-lg);
+        }
+        
+        .feature-number {
+            font-size: 2.5rem;
+            font-weight: 800;
+            background: linear-gradient(135deg, var(--primary) 0%, var(--accent) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            line-height: 1;
+            margin-bottom: 1rem;
+        }
+        
+        .feature-item h3 {
+            font-size: 1.25rem;
+            margin-bottom: 0.75rem;
+        }
+        
+        .feature-item p {
+            font-size: 0.95rem;
+            color: var(--text-light);
+            margin-bottom: 0;
+        }
+        
+        /* ===== 工作原理 ===== */
+        .how-it-works {
+            background: white;
+        }
+        
+        .steps-container {
+            max-width: 900px;
+            margin: 0 auto;
+        }
+        
+        .step {
+            display: flex;
+            gap: 2rem;
+            margin-bottom: 3rem;
+            padding: 1.5rem;
+            background: white;
+            border-radius: var(--radius-lg);
+            box-shadow: var(--shadow-md);
+            align-items: center;
+        }
+        
+        .step-number {
+            min-width: 48px;
+            height: 48px;
+            background: linear-gradient(135deg, var(--primary) 0%, var(--accent) 100%);
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.25rem;
+            font-weight: 700;
+            flex-shrink: 0;
+        }
+        
+        .step-content h3 {
+            font-size: 1.25rem;
+            margin-bottom: 0.5rem;
+        }
+        
+        .step-content p {
+            font-size: 0.95rem;
+            color: var(--text-light);
+            margin-bottom: 0;
+        }
+        
+        /* ===== 使用场景 ===== */
+        .use-cases {
+            background: var(--light);
+        }
+        
+        .cases-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 1.5rem;
+        }
+        
+        .case-card {
+            background: white;
+            border-radius: var(--radius-lg);
+            padding: 2rem;
+            box-shadow: var(--shadow-md);
+            transition: var(--transition);
+        }
+        
+        .case-card:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--shadow-lg);
+        }
+        
+        .case-icon {
+            width: 56px;
+            height: 56px;
+            background: linear-gradient(135deg, var(--primary-light) 0%, rgba(124, 58, 237, 0.08) 100%);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 1.25rem;
+            font-size: 1.5rem;
+            color: var(--primary);
+        }
+        
+        .case-card h3 {
+            font-size: 1.25rem;
+            margin-bottom: 0.75rem;
+        }
+        
+        .case-card p {
+            font-size: 0.95rem;
+            color: var(--text-light);
+            margin-bottom: 1rem;
+        }
+        
+        .case-features {
+            list-style: none;
+            margin-top: 1rem;
+        }
+        
+        .case-features li {
+            font-size: 0.875rem;
+            color: var(--text-light);
+            padding: 0.375rem 0;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        
+        .case-features li::before {
+            content: '✓';
+            color: var(--success);
+            font-weight: bold;
+        }
+        
+        /* ===== 下载区域 ===== */
+        .download-section {
+            background: linear-gradient(135deg, var(--dark) 0%, var(--darker) 100%);
+            color: white;
+            text-align: center;
+            padding: 80px 0;
+        }
+        
+        .download-content {
+            max-width: 700px;
+            margin: 0 auto;
+        }
+        
+        .download-content h2 {
+            font-size: 2rem;
+            margin-bottom: 1rem;
+            color: white;
+        }
+        
+        .download-content p {
+            font-size: 1.125rem;
+            opacity: 0.9;
+            margin-bottom: 2rem;
+            line-height: 1.6;
+        }
+        
+        .platform-badges {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            flex-wrap: wrap;
+            margin-bottom: 2rem;
+        }
+        
+        .platform-badge {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            background: rgba(255, 255, 255, 0.1);
+            padding: 0.75rem 1.25rem;
+            border-radius: var(--radius-md);
+            font-size: 0.95rem;
+            transition: var(--transition);
+        }
+        
+        .platform-badge:hover {
+            background: rgba(255, 255, 255, 0.15);
+            transform: translateY(-2px);
+        }
+        
+        /* ===== FAQ区域 ===== */
+        .faq-section {
+            background: white;
+        }
+        
+        .faq-container {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        .faq-item {
+            background: white;
+            border-radius: var(--radius-md);
+            margin-bottom: 1rem;
+            overflow: hidden;
+            box-shadow: var(--shadow-sm);
+            border: 1px solid var(--border);
+            transition: var(--transition);
+        }
+        
+        .faq-item:hover {
+            box-shadow: var(--shadow-md);
+        }
+        
+        .faq-question {
+            padding: 1.25rem 1.5rem;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-weight: 600;
+            font-size: 1rem;
+            color: var(--dark);
+            transition: var(--transition);
+        }
+        
+        .faq-question:hover {
+            background: var(--light-gray);
+        }
+        
+        .faq-answer {
+            padding: 0 1.5rem;
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease, padding 0.3s ease;
+            color: var(--text-light);
+            line-height: 1.6;
+            font-size: 0.95rem;
+        }
+        
+        .faq-answer.active {
+            padding: 0 1.5rem 1.25rem;
+            max-height: 500px;
+        }
+        
+        .faq-toggle {
+            width: 24px;
+            height: 24px;
+            background: var(--light-gray);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--primary);
+            font-size: 1rem;
+            transition: var(--transition);
+            flex-shrink: 0;
+        }
+        
+        .faq-item.active .faq-toggle {
+            background: var(--primary);
+            color: white;
+            transform: rotate(45deg);
+        }
+        
+        /* ===== 页脚 ===== */
+        .footer {
+            background: var(--darker);
+            color: rgba(255, 255, 255, 0.7);
+            padding: 60px 0 30px;
+        }
+        
+        .footer-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 2.5rem;
+            margin-bottom: 2.5rem;
+        }
+        
+        .footer-column h3 {
+            color: white;
+            font-size: 1.125rem;
+            margin-bottom: 1.25rem;
+            position: relative;
+        }
+        
+        .footer-column h3::after {
+            content: '';
+            position: absolute;
+            bottom: -6px;
+            left: 0;
+            width: 30px;
+            height: 2px;
+            background: linear-gradient(90deg, var(--primary), var(--accent));
+            border-radius: 1px;
+        }
+        
+        .footer-links {
+            list-style: none;
+        }
+        
+        .footer-links li {
+            margin-bottom: 0.75rem;
+        }
+        
+        .footer-links a {
+            color: rgba(255, 255, 255, 0.6);
+            font-size: 0.875rem;
+            transition: var(--transition);
+        }
+        
+        .footer-links a:hover {
+            color: white;
+        }
+        
+        .footer-bottom {
+            text-align: center;
+            padding-top: 2rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            color: rgba(255, 255, 255, 0.5);
+            font-size: 0.75rem;
+        }
+        
+        /* ===== 响应式设计 ===== */
+        @media (max-width: 1024px) {
+            .hero-content {
+                grid-template-columns: 1fr;
+                gap: 2.5rem;
+                text-align: center;
+            }
+            
+            .hero-text h1 {
+                font-size: 2.25rem;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .section {
+                padding: 60px 0;
+            }
+            
+            .header-container {
+                flex-direction: column;
+                gap: 1rem;
+            }
+            
+            .nav {
+                gap: 1.5rem;
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+            
+            .hero {
+                padding: 120px 0 60px;
+            }
+            
+            .hero-text h1 {
+                font-size: 2rem;
+            }
+            
+            .hero-buttons {
+                flex-direction: column;
+            }
+            
+            .hero-stats {
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+            
+            .step {
+                flex-direction: column;
+                gap: 1.5rem;
+                text-align: center;
+            }
+            
+            .step-number {
+                align-self: center;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .container {
+                padding: 0 16px;
+            }
+            
+            .hero-text h1 {
+                font-size: 1.75rem;
+            }
+            
+            .section-title {
+                font-size: 1.75rem;
+            }
+            
+            .btn {
+                width: 100%;
+            }
+            
+            .platform-badges {
+                gap: 0.5rem;
+            }
+            
+            .platform-badge {
+                padding: 0.5rem 1rem;
+                font-size: 0.875rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- 网站头部 -->
+    <header class="header" id="header">
+        <div class="container header-container">
+            <div class="logo">
+                <div class="logo-icon">快</div>
+                <span class="logo-text">快连</span>
+            </div>
+            <nav class="nav">
+                <a href="#home" class="nav-link">首页</a>
+                <a href="#advantages" class="nav-link">核心优势</a>
+                <a href="#features" class="nav-link">技术特点</a>
+                <a href="#how-it-works" class="nav-link">工作原理</a>
+                <a href="#use-cases" class="nav-link">使用场景</a>
+                <a href="#download" class="nav-link">下载</a>
+            </nav>
+        </div>
+    </header>
+
+    <!-- 英雄区域 -->
+    <section class="hero" id="home">
+        <div class="container">
+            <div class="hero-content">
+                <div class="hero-text">
+                    <h1>体验<span class="highlight">快连</span>，连接更快更稳定</h1>
+                    <p class="text-large">快连采用智能网络连接技术，为您提供毫秒级响应速度。无论工作、学习还是娱乐，快连都能确保您享受优质的网络体验。</p>
+                    
+                    <div class="hero-buttons">
+                        <a href="#download" class="btn btn-primary">免费体验快连</a>
+                        <a href="#features" class="btn btn-secondary">了解技术特点</a>
+                    </div>
+                    
+                    <div class="hero-stats">
+                        <div class="stat-item">
+                            <div class="stat-number">10ms</div>
+                            <div class="stat-label">平均响应时间</div>
+                        </div>
+                        <div class="stat-item">
+                            <div class="stat-number">99.9%</div>
+                            <div class="stat-label">连接稳定性</div>
+                        </div>
+                        <div class="stat-item">
+                            <div class="stat-number">500万+</div>
+                            <div class="stat-label">全球用户</div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div>
+                    <img src="https://images.unsplash.com/photo-1558494949-ef010cbdcc31?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80" alt="快连技术展示" class="hero-image">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 核心优势 -->
+    <section class="section advantages" id="advantages">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">快连核心优势</h2>
+                <p class="section-subtitle">快连提供多项技术优势，确保您获得最佳的网络连接体验</p>
+            </div>
+            
+            <div class="advantages-grid">
+                <div class="advantage-card">
+                    <div class="advantage-icon">⚡</div>
+                    <h3>极速连接</h3>
+                    <p>快连采用智能路由算法，实现毫秒级连接速度。无论访问国内还是国际网络资源，都能享受流畅的体验。</p>
+                </div>
+                
+                <div class="advantage-card">
+                    <div class="advantage-icon">🛡️</div>
+                    <h3>安全可靠</h3>
+                    <p>多层加密技术保护您的网络活动隐私。从连接到传输，快连全程保障您的数据安全。</p>
+                </div>
+                
+                <div class="advantage-card">
+                    <div class="advantage-icon">🌐</div>
+                    <h3>全球覆盖</h3>
+                    <p>在全球部署超过100个高速节点，确保您无论身在何处，都能享受本地化的快速连接。</p>
+                </div>
+                
+                <div class="advantage-card">
+                    <div class="advantage-icon">📱</div>
+                    <h3>多平台支持</h3>
+                    <p>支持所有主流设备和操作系统，一次设置即可在所有设备上享受优质网络体验。</p>
+                </div>
+                
+                <div class="advantage-card">
+                    <div class="advantage-icon">🔧</div>
+                    <h3>智能优化</h3>
+                    <p>根据您的网络环境和设备性能，自动调整连接参数，确保最佳的网络体验。</p>
+                </div>
+                
+                <div class="advantage-card">
+                    <div class="advantage-icon">📊</div>
+                    <h3>实时监控</h3>
+                    <p>提供详细的连接状态监控，让您完全掌控自己的网络连接情况。</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 技术特点 -->
+    <section class="section features" id="features">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">快连技术特点</h2>
+                <p class="section-subtitle">快连采用多项先进技术，为您提供稳定高速的网络连接</p>
+            </div>
+            
+            <div class="features-grid">
+                <div class="feature-item">
+                    <div class="feature-number">01</div>
+                    <h3>智能路由算法</h3>
+                    <p>实时分析网络状况，自动选择最优连接路径，确保最快的连接速度。</p>
+                </div>
+                
+                <div class="feature-item">
+                    <div class="feature-number">02</div>
+                    <h3>多层加密架构</h3>
+                    <p>采用AES-256加密技术，确保数据传输的绝对安全。</p>
+                </div>
+                
+                <div class="feature-item">
+                    <div class="feature-number">03</div>
+                    <h3>自适应优化</h3>
+                    <p>根据设备性能和网络环境，自动调整连接参数，提供最佳体验。</p>
+                </div>
+                
+                <div class="feature-item">
+                    <div class="feature-number">04</div>
+                    <h3>负载均衡</h3>
+                    <p>智能分配网络流量，避免单点拥塞，确保连接稳定性。</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 工作原理 -->
+    <section class="section how-it-works" id="how-it-works">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">快连工作原理</h2>
+                <p class="section-subtitle">了解快连如何为您提供优质的网络连接体验</p>
+            </div>
+            
+            <div class="steps-container">
+                <div class="step">
+                    <div class="step-number">1</div>
+                    <div class="step-content">
+                        <h3>智能服务器选择</h3>
+                        <p>当您启动快连时，系统会自动分析网络环境，选择最优服务器节点，确保最快的连接速度。</p>
+                    </div>
+                </div>
+                
+                <div class="step">
+                    <div class="step-number">2</div>
+                    <div class="step-content">
+                        <h3>建立加密通道</h3>
+                        <p>在您的设备和快连服务器之间建立加密通道，所有数据传输都经过高强度加密保护。</p>
+                    </div>
+                </div>
+                
+                <div class="step">
+                    <div class="step-number">3</div>
+                    <div class="step-content">
+                        <h3>智能路由优化</h3>
+                        <p>系统实时监测网络状况，自动调整路由路径，确保您始终获得最稳定的网络连接。</p>
+                    </div>
+                </div>
+                
+                <div class="step">
+                    <div class="step-number">4</div>
+                    <div class="step-content">
+                        <h3>安全访问网络</h3>
+                        <p>通过快连服务，您可以安全访问全球网络资源，同时保护您的网络隐私。</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 使用场景 -->
+    <section class="section use-cases" id="use-cases">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">快连使用场景</h2>
+                <p class="section-subtitle">快连适用于多种网络需求场景，为您提供全方位的解决方案</p>
+            </div>
+            
+            <div class="cases-grid">
+                <div class="case-card">
+                    <div class="case-icon">💼</div>
+                    <h3>远程办公</h3>
+                    <p>为远程工作者提供稳定安全的网络连接，确保工作效率。</p>
+                    <ul class="case-features">
+                        <li>安全访问公司资源</li>
+                        <li>稳定视频会议</li>
+                        <li>多设备同步</li>
+                    </ul>
+                </div>
+                
+                <div class="case-card">
+                    <div class="case-icon">🎓</div>
+                    <h3>在线学习</h3>
+                    <p>为学习者提供流畅的在线教育体验，确保学习过程无中断。</p>
+                    <ul class="case-features">
+                        <li>流畅观看课程</li>
+                        <li>访问国际教育资源</li>
+                        <li>稳定在线考试</li>
+                    </ul>
+                </div>
+                
+                <div class="case-card">
+                    <div class="case-icon">🎮</div>
+                    <h3>娱乐游戏</h3>
+                    <p>为玩家提供低延迟的游戏体验，提升游戏乐趣。</p>
+                    <ul class="case-features">
+                        <li>降低游戏延迟</li>
+                        <li>稳定游戏连接</li>
+                        <li>访问全球游戏</li>
+                    </ul>
+                </div>
+                
+                <div class="case-card">
+                    <div class="case-icon">🛡️</div>
+                    <h3>网络安全</h3>
+                    <p>保护您的网络隐私和数据安全，特别是在公共网络环境下。</p>
+                    <ul class="case-features">
+                        <li>公共Wi-Fi保护</li>
+                        <li>隐私数据保护</li>
+                        <li>安全在线支付</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 下载区域 -->
+    <section class="download-section" id="download">
+        <div class="container">
+            <div class="download-content">
+                <h2>立即体验快连</h2>
+                <p>加入全球数百万用户的满意行列，体验前所未有的网络连接速度。快连提供免费版本，无需信用卡即可开始使用。</p>
+                
+                <div class="platform-badges">
+                    <div class="platform-badge">
+                        <span>🪟</span>
+                        <span>Windows</span>
+                    </div>
+                    <div class="platform-badge">
+                        <span>🍎</span>
+                        <span>macOS</span>
+                    </div>
+                    <div class="platform-badge">
+                        <span>🤖</span>
+                        <span>Android</span>
+                    </div>
+                    <div class="platform-badge">
+                        <span>📱</span>
+                        <span>iOS</span>
+                    </div>
+                    <div class="platform-badge">
+                        <span>🐧</span>
+                        <span>Linux</span>
+                    </div>
+                </div>
+                
+                <a href="#download" class="btn btn-primary">免费下载快连</a>
+                
+                <p class="text-small" style="margin-top: 1.5rem; opacity: 0.8;">
+                    30天退款保证 · 24/7技术支持 · 全平台覆盖
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQ区域 -->
+    <section class="section faq-section">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">常见问题</h2>
+                <p class="section-subtitle">关于快连的常见问题，我们为您准备了详细的解答</p>
+            </div>
+            
+            <div class="faq-container">
+                <div class="faq-item">
+                    <div class="faq-question">
+                        快连是什么？
+                        <span class="faq-toggle">+</span>
+                    </div>
+                    <div class="faq-answer">
+                        <p>快连是一种智能网络连接技术，通过优化网络路径和采用先进协议，为用户提供更快、更稳定的网络连接。</p>
+                    </div>
+                </div>
+                
+                <div class="faq-item">
+                    <div class="faq-question">
+                        使用快连需要什么设备？
+                        <span class="faq-toggle">+</span>
+                    </div>
+                    <div class="faq-answer">
+                        <p>快连支持所有主流设备：Windows 10及以上，macOS 10.15及以上，iOS 14.0及以上，Android 7.0及以上，以及主流Linux发行版。</p>
+                    </div>
+                </div>
+                
+                <div class="faq-item">
+                    <div class="faq-question">
+                        快连的速度如何？
+                        <span class="faq-toggle">+</span>
+                    </div>
+                    <div class="faq-answer">
+                        <p>快连采用专有的加速技术，通常可以达到您基础网络速度的90%以上。具体速度取决于您的原始网络速度和选择的服务器位置。</p>
+                    </div>
+                </div>
+                
+                <div class="faq-item">
+                    <div class="faq-question">
+                        快连的安全性如何？
+                        <span class="faq-toggle">+</span>
+                    </div>
+                    <div class="faq-answer">
+                        <p>快连提供多层安全保护：采用AES-256位加密技术，严格的零日志政策，自动终止开关防止数据泄露，DNS泄露保护确保隐私安全。</p>
+                    </div>
+                </div>
+                
+                <div class="faq-item">
+                    <div class="faq-question">
+                        快连有免费版本吗？
+                        <span class="faq-toggle">+</span>
+                    </div>
+                    <div class="faq-answer">
+                        <p>是的，我们提供功能完整的免费版本：每月10GB免费流量，访问全球5个最受欢迎的服务器位置，所有安全功能完整可用，支持最多2台设备同时连接。</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 页脚 -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-column">
+                    <h3>快连</h3>
+                    <p style="color: rgba(255, 255, 255, 0.6); font-size: 0.875rem; line-height: 1.6;">重新定义网络连接体验，让每个人都能享受高速稳定的互联网。</p>
+                </div>
+                
+                <div class="footer-column">
+                    <h3>产品功能</h3>
+                    <ul class="footer-links">
+                        <li><a href="#advantages">核心优势</a></li>
+                        <li><a href="#features">技术特点</a></li>
+                        <li><a href="#how-it-works">工作原理</a></li>
+                        <li><a href="#use-cases">使用场景</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-column">
+                    <h3>下载</h3>
+                    <ul class="footer-links">
+                        <li><a href="#download">Windows 下载</a></li>
+                        <li><a href="#download">macOS 下载</a></li>
+                        <li><a href="#download">Android 下载</a></li>
+                        <li><a href="#download">iOS 下载</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-column">
+                    <h3>支持</h3>
+                    <ul class="footer-links">
+                        <li><a href="#">帮助中心</a></li>
+                        <li><a href="#">使用教程</a></li>
+                        <li><a href="#">系统状态</a></li>
+                        <li><a href="#">联系快连</a></li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="footer-bottom">
+                <p>&copy; 2026 快连VPN. 保留所有权利. | <a href="#" style="color: rgba(255, 255, 255, 0.6);">隐私政策</a> | <a href="#" style="color: rgba(255, 255, 255, 0.6);">服务条款</a></p>
+                <p style="margin-top: 0.5rem;">版本 3.2.2 | 最后更新: 2026年1月</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // 头部滚动效果
+        window.addEventListener('scroll', function() {
+            const header = document.getElementById('header');
+            if (window.scrollY > 50) {
+                header.style.boxShadow = '0 2px 10px rgba(0, 0, 0, 0.1)';
+                header.style.background = 'rgba(255, 255, 255, 0.98)';
+            } else {
+                header.style.boxShadow = '0 1px 3px rgba(0, 0, 0, 0.05)';
+                header.style.background = 'rgba(255, 255, 255, 0.95)';
+            }
+        });
+        
+        // 平滑滚动
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                
+                const targetId = this.getAttribute('href');
+                if (targetId === '#') return;
+                
+                const targetElement = document.querySelector(targetId);
+                if (targetElement) {
+                    window.scrollTo({
+                        top: targetElement.offsetTop - 80,
+                        behavior: 'smooth'
+                    });
+                    
+                    // 更新URL哈希
+                    history.pushState(null, null, targetId);
+                }
+            });
+        });
+        
+        // FAQ交互
+        document.querySelectorAll('.faq-question').forEach(question => {
+            question.addEventListener('click', function() {
+                const faqItem = this.parentElement;
+                const answer = this.nextElementSibling;
+                const toggle = this.querySelector('.faq-toggle');
+                
+                // 关闭其他打开的FAQ
+                document.querySelectorAll('.faq-item.active').forEach(item => {
+                    if (item !== faqItem) {
+                        item.classList.remove('active');
+                        item.querySelector('.faq-answer').classList.remove('active');
+                        item.querySelector('.faq-toggle').textContent = '+';
+                    }
+                });
+                
+                // 切换当前FAQ
+                const isActive = faqItem.classList.contains('active');
+                if (!isActive) {
+                    faqItem.classList.add('active');
+                    answer.classList.add('active');
+                    toggle.textContent = '−';
+                } else {
+                    faqItem.classList.remove('active');
+                    answer.classList.remove('active');
+                    toggle.textContent = '+';
+                }
+            });
+        });
+        
+        // 下载按钮交互
+        document.querySelectorAll('.btn-primary').forEach(button => {
+            if (button.textContent.includes('下载') || button.textContent.includes('体验')) {
+                button.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    
+                    const modal = document.createElement('div');
+                    modal.style.cssText = `
+                        position: fixed;
+                        top: 0;
+                        left: 0;
+                        right: 0;
+                        bottom: 0;
+                        background: rgba(0, 0, 0, 0.7);
+                        display: flex;
+                        align-items: center;
+                        justify-content: center;
+                        z-index: 2000;
+                        backdrop-filter: blur(4px);
+                    `;
+                    
+                    modal.innerHTML = `
+                        <div style="background: white; border-radius: 12px; padding: 2rem; max-width: 400px; width: 90%; position: relative;">
+                            <button style="position: absolute; top: 12px; right: 12px; background: none; border: none; font-size: 20px; cursor: pointer; color: #64748b;">×</button>
+                            <div style="text-align: center; margin-bottom: 1.5rem;">
+                                <div style="width: 64px; height: 64px; background: linear-gradient(135deg, var(--primary) 0%, var(--accent) 100%); border-radius: 16px; display: flex; align-items: center; justify-content: center; margin: 0 auto 1rem; color: white; font-size: 28px;">
+                                    ⚡
+                                </div>
+                                <h3 style="color: var(--darker); margin-bottom: 0.5rem; font-size: 1.25rem;">下载快连</h3>
+                                <p style="color: var(--text-light); font-size: 0.95rem;">选择您的操作系统开始下载</p>
+                            </div>
+                            
+                            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 0.75rem; margin-bottom: 1.5rem;">
+                                <button class="platform-download" data-platform="windows">Windows</button>
+                                <button class="platform-download" data-platform="mac">macOS</button>
+                                <button class="platform-download" data-platform="android">Android</button>
+                                <button class="platform-download" data-platform="ios">iOS</button>
+                            </div>
+                            
+                            <p style="text-align: center; color: var(--text-light); font-size: 0.875rem;">
+                                下载后请按照安装指南完成设置
+                            </p>
+                        </div>
+                    `;
+                    
+                    document.body.appendChild(modal);
+                    
+                    // 添加按钮样式
+                    modal.querySelectorAll('.platform-download').forEach(btn => {
+                        btn.style.cssText = `
+                            padding: 0.75rem;
+                            background: var(--light-gray);
+                            border: 1px solid var(--border);
+                            border-radius: 8px;
+                            font-weight: 500;
+                            color: var(--text);
+                            cursor: pointer;
+                            transition: all 0.2s ease;
+                        `;
+                        
+                        btn.addEventListener('mouseenter', function() {
+                            this.style.background = 'var(--primary-light)';
+                            this.style.borderColor = 'var(--primary)';
+                        });
+                        
+                        btn.addEventListener('mouseleave', function() {
+                            this.style.background = 'var(--light-gray)';
+                            this.style.borderColor = 'var(--border)';
+                        });
+                    });
+                    
+                    // 关闭模态框
+                    modal.querySelector('button').addEventListener('click', () => {
+                        document.body.removeChild(modal);
+                    });
+                    
+                    // 平台选择
+                    modal.querySelectorAll('.platform-download').forEach(btn => {
+                        btn.addEventListener('click', function() {
+                            const platform = this.dataset.platform;
+                            const platformNames = {
+                                'windows': 'Windows',
+                                'mac': 'macOS',
+                                'android': 'Android',
+                                'ios': 'iOS'
+                            };
+                            
+                            alert(`正在为您下载${platformNames[platform]}版本的快连...\n\n如果下载没有自动开始，请检查浏览器的下载管理器。`);
+                            document.body.removeChild(modal);
+                        });
+                    });
+                });
+            }
+        });
+        
+        // 统计数字动画
+        window.addEventListener('load', function() {
+            const statNumbers = document.querySelectorAll('.stat-number');
+            statNumbers.forEach(stat => {
+                const originalText = stat.textContent;
+                stat.textContent = '0';
+                
+                setTimeout(() => {
+                    let current = 0;
+                    const target = parseInt(originalText);
+                    const increment = target / 30;
+                    const timer = setInterval(() => {
+                        current += increment;
+                        if (current >= target) {
+                            clearInterval(timer);
+                            stat.textContent = originalText;
+                        } else {
+                            stat.textContent = Math.floor(current) + (originalText.includes('+') ? '+' : '');
+                        }
+                    }, 30);
+                }, 300);
+            });
+            
+            // 卡片动画
+            const observerOptions = {
+                threshold: 0.1,
+                rootMargin: '0px 0px -40px 0px'
+            };
+            
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.style.opacity = '1';
+                        entry.target.style.transform = 'translateY(0)';
+                    }
+                });
+            }, observerOptions);
+            
+            // 观察需要动画的元素
+            document.querySelectorAll('.advantage-card, .feature-item, .step, .case-card, .faq-item').forEach(el => {
+                el.style.opacity = '0';
+                el.style.transform = 'translateY(15px)';
+                el.style.transition = 'opacity 0.4s ease, transform 0.4s ease';
+                observer.observe(el);
+            });
+        });
+    </script>
+</body>
+</html>
